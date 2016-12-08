@@ -5,7 +5,7 @@
 			"slots":[
 				{
 					"name": "color",
-					"type": "AMAZON.COLOR"
+					"type": "AMAZON.color"
 				}
 			]
 		},
