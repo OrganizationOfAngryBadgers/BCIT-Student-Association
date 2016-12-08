@@ -1,0 +1,6 @@
+SetMyFavoriteColor {color} is my favorite color
+SetMyFavoriteColor my favorite color is {color}
+SetMyFavoriteColor i like {color}
+
+GetMyFavoriteColor what is my favorite color?
+GetMyFavoriteColor what color do i like?

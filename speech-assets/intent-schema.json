@@ -1,0 +1,43 @@
+{
+	"intents": [
+		{
+			"intent": "SetMyFavoriteColor",
+			"slots":[
+				{
+					"name": "color",
+					"type": "AMAZON.COLOR"
+				}
+			]
+		},
+		{
+			"intent": "GetMyFavoriteColor",
+			"slots":[
+				{
+					"name": "color",
+					"type": "AMAZON.color"
+				}
+			]
+		},
+		{
+			"intent": "AMAZON.StartOverIntent"
+		},
+		{
+			"intent": "AMAZON.RepeatIntent"
+		},
+		{
+			"intent": "AMAZON.HelpIntent"
+		},
+		{
+			"intent": "AMAZON.YesIntent"
+		},
+		{
+			"intent": "AMAZON.NoIntent"
+		},
+		{
+			"intent": "AMAZON.StopIntent"
+		},
+		{
+			"intent": "AMAZON.CancelIntent"
+		}
+	]
+}
