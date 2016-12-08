@@ -20,7 +20,7 @@ const handlers = {
 		var color = this.event.request.intent.slots.color.value;
 		var response = '';
 
-		storage.save(color, location, this.event.session, (color) => {
+		storage.save(color, this.event.session, (color) => {
 			response = 'Ok ' + color + ' is your favorite color. I got it.';
 			this.emit(':ask', response);
 		});
