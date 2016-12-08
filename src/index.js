@@ -31,7 +31,7 @@ const handlers = {
 		var response = '';
 
 		storage.getColor(this.event.session, (color) => {
-			response = color + 'is your favorite color';
+			response = color + ' is your favorite color';
 			this.emit(':ask', response);
 		});
 	},
