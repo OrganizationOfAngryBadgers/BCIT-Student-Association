@@ -21,7 +21,7 @@ var storage = (function() {
 				callback(color);
 			})
 		},
-		getLocation: function(session, callback) {
+		getColor: function(session, callback) {
 			var params = {
 				TableName: 'faveColorList',
 				Key: {
