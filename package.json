@@ -4,9 +4,9 @@
   "description": "",
   "scripts": {
     "start": "npm run test && testtwo && testthree && predeploy && deploy",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "testtwo": "echo \"TESTY TWO\" && exit 1",
-    "testthree": "echo \"TESTTHREE\" && exit 1",
+    "test": "echo \"Error: no test specified\"",
+    "testtwo": "echo \"TESTY TWO\"",
+    "testthree": "echo \"TESTTHREE\"",
     "predeploy": "cd src && zip -r ../Lambda-Skills-Kit.zip * && cd ..",
     "deploy": "aws lambda update-function-code --function-name BCIT-SA-Alexa-Skills-Kit --zip-file fileb://Lambda-Skills-Kit.zip"
     
