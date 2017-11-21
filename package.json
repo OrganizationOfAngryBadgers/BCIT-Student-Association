@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "npm run zip && npm run awsconfig && npm run deploy",
+    "start": "npm run zip && npm run awsconfig",
     "test": "echo \"Error: no test specified\"",
     "testtwo": "echo \"TESTY TWO\"",
     "testthree": "echo \"TESTTHREE\"",
     "zip": "cd src && zip -r ../Lambda-Skills-Kit.zip * && cd ..",
     "awsconfig": "mkdir ~/.aws && cp aws_config/config ~/.aws/config && cp aws_config/credentials ~/.aws/credentials",
 
-    "deploy": "cd src && ../deploy-lambda.sh",
+    "deploy": "cd src &&  .heroku-aws-lambda-buildpack/deploy-lambda.sh",
     "deployOld": "aws lambda update-function-code --function-name BCIT-SA-Alexa-Skills-Kit --zip-file fileb://Lambda-Skills-Kit.zip"
   },
   "author": "Terra Hunter, Harshita Sharma",
