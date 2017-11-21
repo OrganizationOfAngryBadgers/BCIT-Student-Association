@@ -13,7 +13,6 @@
   },
   "author": "Terra Hunter, Harshita Sharma",
   "dependencies": {
-    "aws": "0.0.3-2",
     "aws-cli": "0.0.1",
     "aws-sdk": "^2.154.0",
     "body-parser": "^1.18.2",
