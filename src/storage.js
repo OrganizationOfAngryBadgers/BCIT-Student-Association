@@ -2,8 +2,8 @@
 var AWS = require("aws-sdk");
 
 AWS.config.update({
-	region: "us-east-1",
-	endpoint: "https://dynamodb.us-east-1.amazonaws.com"
+	region: "us-west-2",
+	endpoint: "https://dynamodb.us-west-2.amazonaws.com"
 });
 
 var storage = (function() {
@@ -11,7 +11,7 @@ var storage = (function() {
 	return {
 		save: function(color, session, callback) {
 			var params = {
-				TableName: 'faveColorList',
+				TableName: 'faveColorListExample',
 				Item: {
 					UserId: session.user.userId,
 					Color: color
@@ -23,7 +23,7 @@ var storage = (function() {
 		},
 		getColor: function(session, callback) {
 			var params = {
-				TableName: 'faveColorList',
+				TableName: 'faveColorListExample',
 				Key: {
 					UserId: session.user.userId,
 				}
