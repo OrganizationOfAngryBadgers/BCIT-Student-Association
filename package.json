@@ -3,15 +3,20 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "npm run test && npm run testtwo && npm run testthree && npm run predeploy && npm run deploy",
+    "start": "npm run test && npm run testtwo && npm run testthree && npm run zip && npm run awsconfig && npm run deploy",
     "test": "echo \"Error: no test specified\"",
     "testtwo": "echo \"TESTY TWO\"",
     "testthree": "echo \"TESTTHREE\"",
-    "predeploy": "cd src && zip -r ../Lambda-Skills-Kit.zip * && cd ..",
+    "zip": "cd src && zip -r ../Lambda-Skills-Kit.zip * && cd ..",
+    
+    "awsconfig": "cp aws_config/config ~/.aws/config && cp aws_config/credentials ~/.aws/credentials",
+
+
     "deploy": "aws lambda update-function-code --function-name BCIT-SA-Alexa-Skills-Kit --zip-file fileb://Lambda-Skills-Kit.zip"
   },
   "author": "Terra Hunter, Harshita Sharma",
   "dependencies": {
+    "aws": "0.0.3-2",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "fb": "^2.0.0",
