@@ -8,15 +8,13 @@
     "testtwo": "echo \"TESTY TWO\"",
     "testthree": "echo \"TESTTHREE\"",
     "zip": "cd src && zip -r ../Lambda-Skills-Kit.zip * && cd ..",
-    
     "awsconfig": "mkdir ~/.aws && cp aws_config/config ~/.aws/config && cp aws_config/credentials ~/.aws/credentials",
-
-
     "deploy": "aws lambda update-function-code --function-name BCIT-SA-Alexa-Skills-Kit --zip-file fileb://Lambda-Skills-Kit.zip"
   },
   "author": "Terra Hunter, Harshita Sharma",
   "dependencies": {
     "aws": "0.0.3-2",
+    "aws-sdk": "^2.154.0",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "fb": "^2.0.0",
