@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "test && testtwo && testthree && predeploy && deploy",
+    "start": "npm run test && testtwo && testthree && predeploy && deploy",
     "test": "echo \"Error: no test specified\" && exit 1",
     "testtwo": "echo \"TESTY TWO\" && exit 1",
     "testthree": "echo \"TESTTHREE\" && exit 1",
