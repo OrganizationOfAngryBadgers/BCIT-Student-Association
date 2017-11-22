@@ -12,7 +12,7 @@ exports.handler = function (event, context, callback) {
 
 const handlers = {
 	'LaunchRequest': function () {
-		var welcomeMessage = 'Hello! This is a test.';
+		var welcomeMessage = "I'm sorry Dave, I'm afraid I can't do that.";
 		this.emit(':ask', welcomeMessage, 'Try again.');
 	},
 
@@ -35,6 +35,23 @@ const handlers = {
 			this.emit(':ask', response);
 		});
 	},
+
+
+	'GetEvents': function() {
+
+	},
+	'GetEventDescription': function() {
+
+	},
+	'GetEventTimes': function() {
+
+	},
+	'GetEventLocation': function() {
+		
+	},
+
+
+
 
 	'Unhandled': function() {
 		this.emit(':ask', 'Sorry, I didn\'t get that. Try saying a number.', 'Try saying a number.');
