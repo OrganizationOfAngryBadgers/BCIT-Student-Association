@@ -12,7 +12,7 @@ exports.handler = function (event, context, callback) {
 
 const handlers = {
 	'LaunchRequest': function () {
-		var welcomeMessage = 'Hello! Testing';
+		var welcomeMessage = 'Hello! This is a test.';
 		this.emit(':ask', welcomeMessage, 'Try again.');
 	},
 
