@@ -5,7 +5,7 @@
   "scripts": {
     "start": "npm run zip",
     "test": "echo \"Error: no test specified\"",
-    "testtwo": "echo \"TESTY TWO\"", 
+    "testtwo": "echo \"TESTY TWO\"",  
     "testthree": "echo \"TESTTHREE\"", 
     "zip": "cd src && zip -r ../Lambda-Skills-Kit.zip * && cd ..",
     "awsconfig": "mkdir ~/.aws && cp aws_config/config ~/.aws/config && cp aws_config/credentials ~/.aws/credentials",
