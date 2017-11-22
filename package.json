@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "npm run zip",
+    "start": "echo \"STARTING\"",
     "test": "echo \"Error: no test specified\"",
     "testtwo": "echo \"TESTY TWO\"",      
     "testthree": "echo \"TESTTHREE\"", 
