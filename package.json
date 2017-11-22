@@ -24,6 +24,6 @@
     "request": "^2.83.0"
   },
   "devDependencies": {
-    "run-local-lambda": "^1.0.0"
+    "run-local-lambda": "^1.0.0" 
   }
 }
