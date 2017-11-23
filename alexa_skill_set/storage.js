@@ -21,6 +21,18 @@ var storage = (function() {
 				callback(color);
 			})
 		},
+		saveEvents: function(color, session, callback) {
+			var params = {
+				TableName: 'BCIT_SA_Events',
+				Item: {
+					eventID: session.user.userId,
+					name: color
+				}
+			};
+			dynamodb.put(params, function(err, data) {
+				callback(color);
+			})
+		},
 		getColor: function(session, callback) {
 			var params = {
 				TableName: 'BCIT_SA_Events',

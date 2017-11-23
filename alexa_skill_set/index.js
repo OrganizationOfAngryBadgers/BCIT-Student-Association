@@ -39,7 +39,10 @@ const handlers = {
 
 
 	'GetEvents': function() {
-
+		storage.saveEvents(color, this.event.session, (color) => {
+			response = 'Ok ' + color + ' is your favorite color. I got it.';
+			this.emit(':ask', response);
+		});
 	},
 	'GetEventDescription': function() {
 
