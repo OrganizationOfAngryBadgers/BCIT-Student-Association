@@ -11,10 +11,10 @@ var storage = (function() {
 	return {
 		save: function(color, session, callback) {
 			var params = {
-				TableName: 'favoriteColorListExample',
+				TableName: 'BCIT_SA_Events',
 				Item: {
-					UserId: session.user.userId,
-					Color: color
+					eventID: session.user.userId,
+					name: color
 				}
 			};
 			dynamodb.put(params, function(err, data) {
@@ -23,13 +23,13 @@ var storage = (function() {
 		},
 		getColor: function(session, callback) {
 			var params = {
-				TableName: 'favoriteColorListExample',
+				TableName: 'BCIT_SA_Events',
 				Key: {
-					UserId: session.user.userId,
+					eventID: session.user.userId,
 				}
 			};
 			dynamodb.get(params, function(err, data) {
-				callback(data.Item.Color);
+				callback(data.Item.name);
 			});
 		}
 	}
