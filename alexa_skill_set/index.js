@@ -5,6 +5,7 @@ var storage = require("./storage");
 
 exports.handler = function (event, context, callback) {
 	var alexa = Alexa.handler(event, context);
+	alexa.appId = "amzn1.ask.skill.ccdcee39-c120-4b10-bfab-a30a727975ad";
 	alexa.registerHandlers(handlers);
 	alexa.execute();
 
@@ -47,7 +48,7 @@ const handlers = {
 
 	},
 	'GetEventLocation': function() {
-		
+
 	},
 
 
