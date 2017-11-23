@@ -11,7 +11,7 @@ var storage = (function() {
 	return {
 		save: function(color, session, callback) {
 			var params = {
-				TableName: 'faveColorListExample',
+				TableName: 'favoriteColorListExample',
 				Item: {
 					UserId: session.user.userId,
 					Color: color
@@ -23,7 +23,7 @@ var storage = (function() {
 		},
 		getColor: function(session, callback) {
 			var params = {
-				TableName: 'faveColorListExample',
+				TableName: 'favoriteColorListExample',
 				Key: {
 					UserId: session.user.userId,
 				}
