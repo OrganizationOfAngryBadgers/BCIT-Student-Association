@@ -52,7 +52,7 @@ const handlers = {
 				});
 		    }
 		});
-		storage.saveTest(eventsJSON, (eventsJSON) => {
+		storage.saveTest("eventsJSON", (eventsJSON) => {
 			response = 'Ok your saycks usgot it.';
 			this.emit(':ask', response);
 		});
