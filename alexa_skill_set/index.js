@@ -2,6 +2,7 @@
 'use strict';
 var Alexa = require("alexa-sdk");
 var storage = require("./storage");
+var request = require('request');
 
 exports.handler = function (event, context, callback) {
 	var alexa = Alexa.handler(event, context);
@@ -10,6 +11,7 @@ exports.handler = function (event, context, callback) {
 	alexa.execute();
 
 };
+const FB_API_URL = "fb-events-alexa.herokuapp.com";
 
 const handlers = {
 	'LaunchRequest': function () {
@@ -39,10 +41,15 @@ const handlers = {
 
 
 	'GetEvents': function() {
-		storage.saveEvents(color, this.event.session, (color) => {
-			response = 'Ok ' + color + ' is your favorite color. I got it.';
-			this.emit(':ask', response);
+		request(FB_API_URL + '/getEvents', function (error, res, eventsJSON) {
+		    if (!error && res.statusCode == 200) {
+		      	storage.saveEvents(eventsJSON, (eventsJSON) => {
+					response = 'Ok database updated.';
+					this.emit(':ask', response);
+				});
+		    }
 		});
+
 	},
 	'GetEventDescription': function() {
 
