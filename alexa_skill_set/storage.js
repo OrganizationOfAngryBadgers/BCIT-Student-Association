@@ -92,6 +92,11 @@ var storage = (function() {
 				}
 			}
 			dynamodb.batchWrite(params, function(err, data) { 
+			  if (err) {
+			    console.log("Error", err);
+			  } else {
+			    console.log("Success", data);
+			  }
 				callback(eventsJSON);
 			});
 		},
