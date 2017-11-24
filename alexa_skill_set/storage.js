@@ -46,7 +46,7 @@ var storage = (function() {
 		},
 		saveEvents: function(eventsJSON, callback) {
 			var items = [];
-			for (var i = 0; i < eventsJSON.length; i++) {
+			for (var i = 0; i < 1; i++) {
 				var event = eventsJSON[i];
 				var request = {
 					PutRequest: {
@@ -99,6 +99,7 @@ var storage = (function() {
 			  }
 				callback(eventsJSON);
 			});
+			callback("Words");
 		},
 		getColor: function(session, callback) {
 			var params = {
