@@ -29,7 +29,7 @@ const handlers = {
 		});
 	},
 
-	'GetMyFavoriteColor': function() {
+	/*'GetMyFavoriteColor': function() {
 		var color = this.event.request.intent.slots.color.value;
 		var response = '';
 
@@ -37,10 +37,10 @@ const handlers = {
 			response = color + ' is your favorite color';
 			this.emit(':ask', response);
 		});
-	},
+	},*/
 
 
-	'GetEvents': function() {
+	'GetMyFavoriteColor': function() {
 		this.emit('Getting Events');
 		requester(FB_API_URL + '/getEvents', function (error, res, eventsJSON) {
 		    if (!error && res.statusCode == 200) {
