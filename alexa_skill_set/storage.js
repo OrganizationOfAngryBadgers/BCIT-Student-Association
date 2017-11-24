@@ -47,7 +47,7 @@ var storage = (function() {
 		saveEvents: function(json, callback) {
 			var eventsJSON = JSON.parse(json);
 			var items = [];
-			for (var i = 0; i < 1; i++) {
+			for (var i = 0; i < eventsJSON.length; i++) {
 				var event = eventsJSON[i];
 				var request = {
 					PutRequest: {
