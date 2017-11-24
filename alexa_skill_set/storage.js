@@ -41,7 +41,7 @@ var storage = (function() {
 				}
 			};
 			dynamodb.put(params, function(err, data) {
-				callback(color);
+				callback(eventsJSON);
 			})
 		},
 		saveEvents: function(eventsJSON, callback) {

@@ -8,6 +8,7 @@ const FB_API_URL = "fb-events-alexa.herokuapp.com";
 exports.handler = function (event, context, callback) {
 	var alexa = Alexa.handler(event, context);
 	alexa.appId = "amzn1.ask.skill.ccdcee39-c120-4b10-bfab-a30a727975ad";
+	alexa.APP_ID = "amzn1.ask.skill.ccdcee39-c120-4b10-bfab-a30a727975ad";
 	alexa.registerHandlers(handlers);
 	alexa.execute();
 
@@ -42,7 +43,7 @@ const handlers = {
 
 
 	'GetMyFavoriteColor': function() {
-		this.emit(':ask', "Getting Events");
+		this.emit(':ask', "Getting Events 1");
 		requester(FB_API_URL + '/getEvents', function (error, res, eventsJSON) {
 		    if (!error && res.statusCode == 200) {
 		      	storage.saveTest(eventsJSON, (eventsJSON) => {
@@ -50,6 +51,10 @@ const handlers = {
 					this.emit(':ask', response);
 				});
 		    }
+		});
+		storage.saveTest(eventsJSON, (eventsJSON) => {
+			response = 'Ok your saycks usgot it.';
+			this.emit(':ask', response);
 		});
 
 	},
