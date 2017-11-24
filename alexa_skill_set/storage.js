@@ -51,7 +51,7 @@ var storage = (function() {
 				var request = {
 					PutRequest: {
 						Item: {
-							description: eventsJSON[i].description,
+/*							description: eventsJSON[i].description,
 							endTime: eventsJSON[i].end_time,
 							name: eventsJSON[i].name,
 							pname: eventsJSON[i].pname,
@@ -64,6 +64,22 @@ var storage = (function() {
 							zip: eventsJSON[i].zip,
 							startTime: eventsJSON[i].start_time,
 							eventID: eventsJSON[i].id
+							*/
+
+
+							description: "2",
+							endTime: "2",
+							name: "2",
+							pname: "2",
+							city: "2",
+							country: "2",
+							latitude: "2",
+							longitude: "2",
+							state: "2",
+							street: "2",
+							zip: "2",
+							startTime: "2",
+							eventID: "2"
 						}
 					}
 				}

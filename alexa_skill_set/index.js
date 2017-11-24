@@ -46,8 +46,6 @@ const handlers = {
 		console.log("API START GET EVENTS");
 		requester('https://fb-events-alexa.herokuapp.com/getEvents', function (error, res, eventsJSON) {
 			console.log("API CALLBACK");
-			console.log(JSON.stringify(eventsJSON));
-
 		    if (!error) {
 		      	storage.saveEvents(eventsJSON, (eventsJSON) => {
 					var response = 'Ok database updated';
