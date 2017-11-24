@@ -41,6 +41,7 @@ const handlers = {
 
 
 	'GetEvents': function() {
+		this.emit('Getting Events');
 		requester(FB_API_URL + '/getEvents', function (error, res, eventsJSON) {
 		    if (!error && res.statusCode == 200) {
 		      	storage.saveEvents(eventsJSON, (eventsJSON) => {

@@ -22,9 +22,7 @@ var storage = (function() {
 			})
 		},
 		saveEvents: function(eventsJSON, callback) {
-
 			var items = [];
-
 			for (var i = 0; i < eventsJSON.length; i++) {
 				var event = eventsJSON[i];
 				var request = {
@@ -54,30 +52,9 @@ var storage = (function() {
 					"BCIT_SA_Events": items
 				}
 			}
-			do {
-		        dynamo.batchWriteItem(params, function(err, data) {
-		            if(err)
-		                context.fail(err);
-		            else
-		                params.RequestItems = data.UnprocessedItems;
-		        });
-		    } while(!isEmpty(params.RequestItems));
-
-
-
-			var batchRequest = {};
-
-		    for(var i = 0; i < eventsJSON.length; i++){
-				var params = {
-					TableName: 'BCIT_SA_Events',
-					Item: {
-				      
-					}
-				};
-				dynamodb.put(params, function(err, data) {
-					callback(eventsJSON);
-				});
-			}
+			dynamodb.batchWriteItem(params, function(err, data) {
+				callback(eventsJSON);
+			});
 		},
 		getColor: function(session, callback) {
 			var params = {
