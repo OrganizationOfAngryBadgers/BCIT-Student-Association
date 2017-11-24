@@ -3,6 +3,7 @@
 var Alexa = require("alexa-sdk");
 var storage = require("./storage");
 var requester = require('request');
+const FB_API_URL = "fb-events-alexa.herokuapp.com";
 
 exports.handler = function (event, context, callback) {
 	var alexa = Alexa.handler(event, context);
@@ -11,7 +12,7 @@ exports.handler = function (event, context, callback) {
 	alexa.execute();
 
 };
-const FB_API_URL = "fb-events-alexa.herokuapp.com";
+
 
 const handlers = {
 	'LaunchRequest': function () {
@@ -41,7 +42,7 @@ const handlers = {
 
 
 	'GetMyFavoriteColor': function() {
-		this.emit('Getting Events');
+		this.emit(':ask', "Getting Events");
 		requester(FB_API_URL + '/getEvents', function (error, res, eventsJSON) {
 		    if (!error && res.statusCode == 200) {
 		      	storage.saveEvents(eventsJSON, (eventsJSON) => {
