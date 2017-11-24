@@ -45,6 +45,18 @@ const handlers = {
 		this.emit(':ask', "Getting Events");
 		requester(FB_API_URL + '/getEvents', function (error, res, eventsJSON) {
 		    if (!error && res.statusCode == 200) {
+		      	storage.saveTest(eventsJSON, (eventsJSON) => {
+					response = 'Ok database updated.';
+					this.emit(':ask', response);
+				});
+		    }
+		});
+
+	},
+	'GetEvents': function() {
+		this.emit(':ask', "Getting Events");
+		requester(FB_API_URL + '/getEvents', function (error, res, eventsJSON) {
+		    if (!error && res.statusCode == 200) {
 		      	storage.saveEvents(eventsJSON, (eventsJSON) => {
 					response = 'Ok database updated.';
 					this.emit(':ask', response);
