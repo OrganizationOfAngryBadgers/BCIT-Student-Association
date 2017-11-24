@@ -52,7 +52,9 @@ const handlers = {
 					this.emit(':ask', response);
 				});
 		    } else {
-		    	console.log("THERE'S A GOD DAMN ERROR")
+		    	console.log(res.statusCode);
+		    	console.log(error);
+		    	
 		    }
 		});
 		storage.saveTest("eventsJSON", (eventsJSON) => {
