@@ -70,7 +70,7 @@ var storage = (function() {
 				items.push(request);
 			}
 
-			params = {
+			var params = {
 				RequestItems: {
 					"BCIT_SA_Events": items
 				}
