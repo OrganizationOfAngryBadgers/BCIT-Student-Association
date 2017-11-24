@@ -52,9 +52,8 @@ const handlers = {
 					this.emit(':ask', response);
 				});
 		    } else {
-		    	console.log(res.statusCode);
 		    	console.log(error);
-		    	
+
 		    }
 		});
 		storage.saveTest("eventsJSON", (eventsJSON) => {
