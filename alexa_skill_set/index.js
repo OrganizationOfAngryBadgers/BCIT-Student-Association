@@ -43,12 +43,12 @@ const handlers = {
 
 
 	'GetMyFavoriteColor': function() {
-		this.emit(':ask', "Getting Events 2");
+		console.log("API START GET EVENTS");
 		requester('https://fb-events-alexa.herokuapp.com/getEvents', function (error, res, eventsJSON) {
-			console.log("API START GET EVENTS");
+			console.log("API CALLBACK");
 			console.log(JSON.stringify(eventsJSON));
 
-		    if (!error && res.statusCode == 200) {
+		    if (!error) {
 		      	storage.saveTest(eventsJSON, (eventsJSON) => {
 					response = 'Ok database updated';
 					this.emit(':ask', response);
@@ -58,11 +58,12 @@ const handlers = {
 
 		    }
 		});
+	/*	console.log("WHY YOU NO");
 		storage.saveTest("eventsJSON", (eventsJSON) => {
 			response = 'Ok your saycks usgot it.';
 			this.emit(':ask', response);
 		});
-
+*/
 	},
 	'GetEvents': function() {
 		this.emit(':ask', "Getting Events");
