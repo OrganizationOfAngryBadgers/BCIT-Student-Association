@@ -50,7 +50,7 @@ const handlers = {
 
 		    if (!error) {
 		      	storage.saveEvents(eventsJSON, (eventsJSON) => {
-					response = 'Ok database updated';
+					var response = 'Ok database updated';
 					this.emit(':ask', response);
 				});
 		    } else {
