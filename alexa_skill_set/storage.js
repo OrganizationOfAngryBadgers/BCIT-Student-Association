@@ -97,9 +97,8 @@ var storage = (function() {
 			  } else {
 			    console.log("Success", data);
 			  }
-				callback(eventsJSON);
+				callback("Database Updated");
 			});
-			callback("Words");
 		},
 		getColor: function(session, callback) {
 			var params = {
