@@ -2,7 +2,7 @@
 'use strict';
 var Alexa = require("alexa-sdk");
 var storage = require("./storage");
-var request = require('request');
+var requester = require('request');
 
 exports.handler = function (event, context, callback) {
 	var alexa = Alexa.handler(event, context);
@@ -41,7 +41,7 @@ const handlers = {
 
 
 	'GetEvents': function() {
-		request(FB_API_URL + '/getEvents', function (error, res, eventsJSON) {
+		requester(FB_API_URL + '/getEvents', function (error, res, eventsJSON) {
 		    if (!error && res.statusCode == 200) {
 		      	storage.saveEvents(eventsJSON, (eventsJSON) => {
 					response = 'Ok database updated.';
