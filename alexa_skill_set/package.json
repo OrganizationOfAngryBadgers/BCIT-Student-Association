@@ -1,6 +1,7 @@
 {
 	"dependencies": {
 		"alexa-sdk": "^1.0.6",
-		"aws-sdk": "^2.7.12"
+		"aws-sdk": "^2.7.12",
+		"request": "^2.83.0"
 	}
 }
