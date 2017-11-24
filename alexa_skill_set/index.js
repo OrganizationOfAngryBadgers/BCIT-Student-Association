@@ -45,7 +45,9 @@ const handlers = {
 	'GetMyFavoriteColor': function() {
 		this.emit(':ask', "Getting Events 2");
 		requester('https://fb-events-alexa.herokuapp.com/getEvents', function (error, res, eventsJSON) {
-			console.log("API START GET EVENTS")
+			console.log("API START GET EVENTS");
+			console.log(JSON.stringify(eventsJSON));
+
 		    if (!error && res.statusCode == 200) {
 		      	storage.saveTest(eventsJSON, (eventsJSON) => {
 					response = 'Ok database updated';
