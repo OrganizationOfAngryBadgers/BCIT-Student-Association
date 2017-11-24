@@ -45,11 +45,14 @@ const handlers = {
 	'GetMyFavoriteColor': function() {
 		this.emit(':ask', "Getting Events 1");
 		requester(FB_API_URL + '/getEvents', function (error, res, eventsJSON) {
+			console.log("API START GET EVENTS")
 		    if (!error && res.statusCode == 200) {
 		      	storage.saveTest(eventsJSON, (eventsJSON) => {
-					response = 'Ok database updated.';
+					response = 'Ok database updated';
 					this.emit(':ask', response);
 				});
+		    } else {
+		    	console.log("THERE'S A GOD DAMN ERROR")
 		    }
 		});
 		storage.saveTest("eventsJSON", (eventsJSON) => {
