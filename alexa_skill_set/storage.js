@@ -75,7 +75,7 @@ var storage = (function() {
 					"BCIT_SA_Events": items
 				}
 			}
-			dynamodb.batchWrite(params, function(err, data) {
+			dynamodb.batchWrite(params, function(err, data) { 
 				callback(eventsJSON);
 			});
 		},
