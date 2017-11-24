@@ -49,7 +49,7 @@ const handlers = {
 			console.log(JSON.stringify(eventsJSON));
 
 		    if (!error) {
-		      	storage.saveTest(eventsJSON, (eventsJSON) => {
+		      	storage.saveEvents(eventsJSON, (eventsJSON) => {
 					response = 'Ok database updated';
 					this.emit(':ask', response);
 				});
