@@ -11,19 +11,7 @@ exports.handler = function (event, context, callback) {
 	alexa.APP_ID = "amzn1.ask.skill.ccdcee39-c120-4b10-bfab-a30a727975ad";
 	alexa.registerHandlers(handlers);
 	alexa.execute();
-	requester('https://fb-events-alexa.herokuapp.com/getEvents', function (error, res, eventsJSON) {
-		console.log("API CALLBACK");
-	    if (!error) {
-	      	storage.saveEvents(eventsJSON, (eventsJSON) => {
-				var response = 'Ok database updated';
-				console("response");
-			});
-	    } else {
-	    	console.log(error);
-	    }
-	});
 };
-
 
 const handlers = {
 	'LaunchRequest': function () {
@@ -44,7 +32,7 @@ const handlers = {
 		});
 	},
 
-	'GetEvents': function() {
+	'GetEvents': function(callback) {
 		console.log("API START GET EVENTS");
 		requester('https://fb-events-alexa.herokuapp.com/getEvents', function (error, res, eventsJSON) {
 			console.log("API CALLBACK");
@@ -56,9 +44,8 @@ const handlers = {
 		    } else {
 		    	console.log(error);
 		    }
+		    callback(this.emit(':tell', "Refreshing Database"));
 		});
-		
-		this.emit(':tell', "Refreshing Database");
 	},
 	
 	/*'GetEvent': function () {
