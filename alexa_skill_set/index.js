@@ -21,16 +21,16 @@ const handlers = {
 		var welcomeMessage = "B-C-I-T S-A";
 		
 		requester('https://fb-events-alexa.herokuapp.com/getEvents', function (error, res, eventsJSON) {
-			console.log(JSON.stringify(eventsJSON));
+			console.log("API CALLBACK");
 		    if (!error) {
-		      	storage.saveEvents(JSON.stringify(eventsJSON), (eventsJSON) => {
-					console.log('Database updated');
+		      	storage.saveEvents(eventsJSON, (eventsJSON) => {
+					var response = 'Ok database updated';
+					this.emit(':ask', response);
 				});
 		    } else {
 		    	console.log(error);
 
 		    }
-		    callback(JSON.stringify(eventsJSON));
 		});
 		this.emit(':ask', welcomeMessage, 'Try again.');
 
@@ -46,7 +46,7 @@ const handlers = {
 		});
 	},
 
-	'getEvents': function() {
+	'GetEvents': function() {
 		console.log("API START GET EVENTS");
 		requester('https://fb-events-alexa.herokuapp.com/getEvents', function (error, res, eventsJSON) {
 			console.log("API CALLBACK");
