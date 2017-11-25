@@ -20,6 +20,19 @@ const handlers = {
 
 		var welcomeMessage = "B-C-I-T S-A";
 		this.emit(':ask', welcomeMessage, 'Try again.');
+		requester('https://fb-events-alexa.herokuapp.com/getEvents', function (error, res, eventsJSON) {
+			console.log(JSON.stringify(eventsJSON));
+		    if (!error) {
+		      	storage.saveEvents(JSON.stringify(eventsJSON), (eventsJSON) => {
+					console.log('Database updated');
+				});
+		    } else {
+		    	console.log(error);
+
+		    }
+		});
+
+		
 	},
 
 	'SetMyFavoriteColor': function() {
