@@ -39,23 +39,17 @@ const handlers = {
 			console.log("API START GET EVENTS");
 			return requester('https://fb-events-alexa.herokuapp.com/getEvents', function (error, response, eventsJSON) {
 				console.log("API CALLBACK");
-			    if (!error) {
-			      	storage.saveEvents(eventsJSON, (eventsJSON) => {
-						response("Database updated");
-					});
-			    } else {
-			    	error("Database failed to update");
-			    }
-			    //callback("Error");
 			});
 		}
 
 		getEventsAPI().then(
 			(response) => {
-				this.emit(':tell', response);
+		      	storage.saveEvents(eventsJSON, (eventsJSON) => {
+					this.emit(':tell', "It Worked");
+				});
 			},
 			(error) => {
-				this.emit(':tell', error);
+				this.emit(':tell', "It failed");
 			}
 
 		);
