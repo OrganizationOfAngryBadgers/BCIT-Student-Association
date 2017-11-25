@@ -16,22 +16,24 @@ exports.handler = function (event, context, callback) {
 
 
 const handlers = {
-	'LaunchRequest': function () {
+	'LaunchRequest': function (callback) {
 
-		var welcomeMessage = "B-C-I-T S-A";
-		this.emit(':ask', welcomeMessage, 'Try again.');
+		
 		requester('https://fb-events-alexa.herokuapp.com/getEvents', function (error, res, eventsJSON) {
 			console.log("API CALLBACK");
 		    if (!error) {
 		      	storage.saveEvents(eventsJSON, (eventsJSON) => {
 					var response = 'Ok database updated';
-					this.emit(':ask', response);
+					this.emit(':tell', response);
 				});
 		    } else {
 		    	console.log(error);
 
 		    }
 		});
+
+		var welcomeMessage = "B-C-I-T S-A";
+		this.emit(':ask', welcomeMessage, 'Try again.');
 		
 
 	},
@@ -48,13 +50,13 @@ const handlers = {
 
 	'GetEvents': function() {
 		console.log("API START GET EVENTS");
-		this.emit(':ask', "Refreshing Database");
+		this.emit(':tell', "Refreshing Database");
 		requester('https://fb-events-alexa.herokuapp.com/getEvents', function (error, res, eventsJSON) {
 			console.log("API CALLBACK");
 		    if (!error) {
 		      	storage.saveEvents(eventsJSON, (eventsJSON) => {
 					var response = 'Ok database updated';
-					this.emit(':ask', response);
+					this.emit(':tell', response);
 				});
 		    } else {
 		    	console.log(error);
