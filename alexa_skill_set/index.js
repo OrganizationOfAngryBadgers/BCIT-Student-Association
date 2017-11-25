@@ -32,20 +32,9 @@ const handlers = {
 		});
 	},
 
-	'GetEvents': function(callback) {
-		console.log("API START GET EVENTS");
-		requester('https://fb-events-alexa.herokuapp.com/getEvents', function (error, res, eventsJSON) {
-			console.log("API CALLBACK");
-		    if (!error) {
-		      	storage.saveEvents(eventsJSON, (eventsJSON) => {
-					var response = 'Ok database updated';
-					this.emit(':tell', response);
-				});
-		    } else {
-		    	console.log(error);
-		    }
-		    callback(this.emit(':tell', "Refreshing Database"));
-		});
+	'GetEvents': function() {
+		var response = getEventsAPI();
+		this.emit(':tell', response);
 	},
 	
 	/*'GetEvent': function () {
@@ -86,3 +75,18 @@ const handlers = {
 	}
 
 }
+
+	function getEventsAPI (callback) {
+		console.log("API START GET EVENTS");
+		requester('https://fb-events-alexa.herokuapp.com/getEvents', function (error, res, eventsJSON) {
+			console.log("API CALLBACK");
+		    if (!error) {
+		      	storage.saveEvents(eventsJSON, (eventsJSON) => {
+				callback("Database updated");
+				});
+		    } else {
+		    	console.log(error);
+		    }
+		    callback("Error");
+		});
+	}
