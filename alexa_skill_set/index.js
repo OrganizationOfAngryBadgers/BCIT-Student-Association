@@ -41,10 +41,10 @@ const handlers = {
 				console.log("API CALLBACK");
 			    if (!error) {
 			      	storage.saveEvents(eventsJSON, (eventsJSON) => {
-					//callback("Database updated");
+						response("Database updated");
 					});
 			    } else {
-			    	console.log(error);
+			    	error("Database failed to update");
 			    }
 			    //callback("Error");
 			});
@@ -52,10 +52,10 @@ const handlers = {
 
 		getEventsAPI().then(
 			(response) => {
-				this.emit(':tell', "it worked");
+				this.emit(':tell', response);
 			},
 			(error) => {
-				this.emit(':tell', "it no work");
+				this.emit(':tell', error);
 			}
 
 		);
