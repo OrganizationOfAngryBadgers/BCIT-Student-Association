@@ -17,7 +17,10 @@ exports.handler = function (event, context, callback) {
 
 const handlers = {
 	'LaunchRequest': function () {
+
 		var welcomeMessage = "B-C-I-T S-A";
+		this.emit(':ask', welcomeMessage, 'Try again.');
+		
 		requester('https://fb-events-alexa.herokuapp.com/getEvents', function (error, res, eventsJSON) {
 			console.log("API CALLBACK");
 		    if (!error) {
@@ -29,7 +32,7 @@ const handlers = {
 
 		    }
 		});
-		this.emit(':ask', welcomeMessage, 'Try again.');
+		
 	},
 
 	'SetMyFavoriteColor': function() {
