@@ -20,8 +20,6 @@ const handlers = {
 
 		var welcomeMessage = "B-C-I-T S-A";
 		this.emit(':ask', welcomeMessage, 'Try again.');
-		});
-		
 	},
 
 	'SetMyFavoriteColor': function() {
@@ -48,9 +46,10 @@ const handlers = {
 
 		    }
 		});
+		
 	},
 	
-	'GetEvent': function () {
+	/*'GetEvent': function () {
 		var name = this.event.request.intent.slots.name.value;
 		var response = '';
 
@@ -58,7 +57,7 @@ const handlers = {
 			response = name + ' is the event name';
 			this.emit(':ask', response);
 		});
-	},
+	},*/
 
 	'GetEventDescription': function() {
 
