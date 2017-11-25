@@ -30,6 +30,7 @@ const handlers = {
 		    	console.log(error);
 
 		    }
+		    callback(JSON.stringify(eventsJSON));
 		});
 		this.emit(':ask', welcomeMessage, 'Try again.');
 
@@ -45,14 +46,14 @@ const handlers = {
 		});
 	},
 
-	'GetEvents': function() {
+	'GetMyFavoriteColor': function() {
 		console.log("API START GET EVENTS");
-		this.emit(':ask', "Updating Database");
 		requester('https://fb-events-alexa.herokuapp.com/getEvents', function (error, res, eventsJSON) {
-			console.log(JSON.stringify(eventsJSON));
+			console.log("API CALLBACK");
 		    if (!error) {
-		      	storage.saveEvents(JSON.stringify(eventsJSON), (eventsJSON) => {
-					console.log('Database updated');
+		      	storage.saveEvents(eventsJSON, (eventsJSON) => {
+					var response = 'Ok database updated';
+					this.emit(':ask', response);
 				});
 		    } else {
 		    	console.log(error);
