@@ -11,26 +11,22 @@ exports.handler = function (event, context, callback) {
 	alexa.APP_ID = "amzn1.ask.skill.ccdcee39-c120-4b10-bfab-a30a727975ad";
 	alexa.registerHandlers(handlers);
 	alexa.execute();
-
+	requester('https://fb-events-alexa.herokuapp.com/getEvents', function (error, res, eventsJSON) {
+		console.log("API CALLBACK");
+	    if (!error) {
+	      	storage.saveEvents(eventsJSON, (eventsJSON) => {
+				var response = 'Ok database updated';
+				console("response");
+			});
+	    } else {
+	    	console.log(error);
+	    }
+	});
 };
 
 
 const handlers = {
-	'LaunchRequest': function (callback) {
-
-		
-		requester('https://fb-events-alexa.herokuapp.com/getEvents', function (error, res, eventsJSON) {
-			console.log("API CALLBACK");
-		    if (!error) {
-		      	storage.saveEvents(eventsJSON, (eventsJSON) => {
-					var response = 'Ok database updated';
-					this.emit(':tell', response);
-				});
-		    } else {
-		    	console.log(error);
-
-		    }
-		});
+	'LaunchRequest': function () {
 
 		var welcomeMessage = "B-C-I-T S-A";
 		this.emit(':ask', welcomeMessage, 'Try again.');
@@ -50,7 +46,6 @@ const handlers = {
 
 	'GetEvents': function() {
 		console.log("API START GET EVENTS");
-		this.emit(':tell', "Refreshing Database");
 		requester('https://fb-events-alexa.herokuapp.com/getEvents', function (error, res, eventsJSON) {
 			console.log("API CALLBACK");
 		    if (!error) {
@@ -60,10 +55,10 @@ const handlers = {
 				});
 		    } else {
 		    	console.log(error);
-
 		    }
 		});
 		
+		this.emit(':tell', "Refreshing Database");
 	},
 	
 	/*'GetEvent': function () {
