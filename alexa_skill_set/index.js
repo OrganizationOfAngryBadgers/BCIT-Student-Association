@@ -31,23 +31,12 @@ const handlers = {
 		});
 	},
 
-	/*'GetMyFavoriteColor': function() {
-		var color = this.event.request.intent.slots.color.value;
-		var response = '';
-
-		storage.getColor(this.event.session, (color) => {
-			response = color + ' is your favorite color';
-			this.emit(':ask', response);
-		});
-	},*/
-
-
-	'GetMyFavoriteColor': function() {
+	'GetEvents': function() {
 		console.log("API START GET EVENTS");
 		requester('https://fb-events-alexa.herokuapp.com/getEvents', function (error, res, eventsJSON) {
 			console.log("API CALLBACK");
 		    if (!error) {
-		      	storage.saveEvents(eventsJSON, (eventsJSON) => {
+		      	storage.saveEvents(JSON.stringify(eventsJSON), (eventsJSON) => {
 					var response = 'Ok database updated';
 					this.emit(':ask', response);
 				});
@@ -56,25 +45,8 @@ const handlers = {
 
 		    }
 		});
-	/*	console.log("WHY YOU NO");
-		storage.saveTest("eventsJSON", (eventsJSON) => {
-			response = 'Ok your saycks usgot it.';
-			this.emit(':ask', response);
-		});
-*/
 	},
-	'GetEvents': function() {
-		this.emit(':ask', "Getting Events");
-		requester(FB_API_URL + '/getEvents', function (error, res, eventsJSON) {
-		    if (!error && res.statusCode == 200) {
-		      	storage.saveEvents(eventsJSON, (eventsJSON) => {
-					response = 'Ok database updated.';
-					this.emit(':ask', response);
-				});
-		    }
-		});
-
-	},
+	
 	'GetEventDescription': function() {
 
 	},

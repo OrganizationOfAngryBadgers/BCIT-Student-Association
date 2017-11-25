@@ -65,23 +65,6 @@ var storage = (function() {
 							street: "" + eventsJSON[i].street,
 							zip: "" + eventsJSON[i].zip,
 							startTime: "" + eventsJSON[i].start_time
-							
-							
-
-
-						/*	description: "2",
-							endTime: "2",
-							name: "2",
-							pname: "2",
-							city: "2",
-							country: "2",
-							latitude: "2",
-							longitude: "2",
-							state: "2",
-							street: "2",
-							zip: "2",
-							startTime: "2",
-							eventID: "2"*/
 						}
 					}
 				}
