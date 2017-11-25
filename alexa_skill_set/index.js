@@ -2,7 +2,7 @@
 'use strict';
 var Alexa = require("alexa-sdk");
 var storage = require("./storage");
-var requester = require('request');
+var requester = require('request-promise');
 const FB_API_URL = "fb-events-alexa.herokuapp.com";
 
 exports.handler = function (event, context, callback) {
@@ -33,8 +33,33 @@ const handlers = {
 	},
 
 	'GetEvents': function() {
-		var response = getEventsAPI();
-		this.emit(':tell', response);
+		
+
+		const getEventsAPI = function getEventsAPI () {
+			console.log("API START GET EVENTS");
+			return requester('https://fb-events-alexa.herokuapp.com/getEvents', function (error, response, eventsJSON) {
+				console.log("API CALLBACK");
+			    if (!error) {
+			      	storage.saveEvents(eventsJSON, (eventsJSON) => {
+					//callback("Database updated");
+					});
+			    } else {
+			    	console.log(error);
+			    }
+			    //callback("Error");
+			});
+		}
+
+		getEventsAPI().then(
+			(response) => {
+				this.emit(':tell', "it worked");
+			},
+			(error) => {
+				this.emit(':tell', "it no work");
+			}
+
+		);
+
 	},
 	
 	/*'GetEvent': function () {
@@ -76,17 +101,4 @@ const handlers = {
 
 }
 
-	function getEventsAPI (callback) {
-		console.log("API START GET EVENTS");
-		requester('https://fb-events-alexa.herokuapp.com/getEvents', function (error, res, eventsJSON) {
-			console.log("API CALLBACK");
-		    if (!error) {
-		      	storage.saveEvents(eventsJSON, (eventsJSON) => {
-				callback("Database updated");
-				});
-		    } else {
-		    	console.log(error);
-		    }
-		    callback("Error");
-		});
-	}
+
