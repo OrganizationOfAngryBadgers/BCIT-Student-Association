@@ -46,7 +46,7 @@ const handlers = {
 		});
 	},
 
-	'GetMyFavoriteColor': function() {
+	'getEvents': function() {
 		console.log("API START GET EVENTS");
 		requester('https://fb-events-alexa.herokuapp.com/getEvents', function (error, res, eventsJSON) {
 			console.log("API CALLBACK");
