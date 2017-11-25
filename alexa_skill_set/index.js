@@ -45,11 +45,11 @@ const handlers = {
 		getEventsAPI().then(
 			(response) => {
 		      	storage.saveEvents(eventsJSON, (eventsJSON) => {
-					this.emit(':tell', "It Worked");
+					//this.emit(':tell', "It Worked");
 				});
 			},
 			(error) => {
-				this.emit(':tell', "It failed");
+				//this.emit(':tell', "It failed");
 			}
 
 		);
