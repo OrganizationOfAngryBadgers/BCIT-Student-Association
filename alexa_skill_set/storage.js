@@ -45,6 +45,7 @@ var storage = (function() {
 			})
 		},
 		saveEvents: function(json, callback) {
+			console.log("Building events");
 			var eventsJSON = JSON.parse(json);
 			var items = [];
 			for (var i = 0; i < eventsJSON.length; i++) {
@@ -76,6 +77,7 @@ var storage = (function() {
 					"BCIT_SA_Events": items
 				}
 			}
+			console.log("Writing events");
 			dynamodb.batchWrite(params, function(err, data) { 
 			  if (err) {
 			    console.log("Error", err);
@@ -85,11 +87,11 @@ var storage = (function() {
 				callback("Database Updated");
 			});
 		},
-		getColor: function(session, callback) {
+		getEvent: function(name, callback) {
 			var params = {
 				TableName: 'BCIT_SA_Events',
 				Key: {
-					eventID: session.user.userId,
+					Name: name,
 				}
 			};
 			dynamodb.get(params, function(err, data) {

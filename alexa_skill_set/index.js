@@ -37,16 +37,26 @@ const handlers = {
 			console.log("API CALLBACK");
 		    if (!error) {
 		      	storage.saveEvents(JSON.stringify(eventsJSON), (eventsJSON) => {
-					var response = 'Ok database updated';
-					this.emit(':ask', response);
+					console.log('Database updated');
 				});
 		    } else {
 		    	console.log(error);
 
 		    }
 		});
+		this.emit(':ask', "Updating Database");
 	},
 	
+	'GetEvent': function () {
+		var name = this.event.request.intent.slots.name.value;
+		var response = '';
+
+		storage.getEvent(name, (name) => {
+			response = name + ' is the event name';
+			this.emit(':ask', response);
+		});
+	},
+
 	'GetEventDescription': function() {
 
 	},
