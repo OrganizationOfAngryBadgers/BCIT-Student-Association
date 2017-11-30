@@ -135,7 +135,7 @@ function getEventsBetweenTime(from, to, callback) {
     var params = {
         TableName:"BCIT_SA_Events",
         ProjectionExpression: "eventID",
-        FilterExpression:"#startTime BETWEEN :from AND :to",
+        KeyConditionExpression:"#startTime BETWEEN :from AND :to",
         ExpressionAttributeNames: {
             "#startTime":"startTime"
         },
