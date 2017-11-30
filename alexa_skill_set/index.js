@@ -134,7 +134,8 @@ function getEventsBetweenTime(from, to, callback) {
 	var docClient = new AWS.DynamoDB.DocumentClient();
     var params = {
         TableName:"BCIT_SA_Events",
-        KeyConditionExpression:"#startTime BETWEEN :from AND :to",
+        ProjectionExpression: "eventID",
+        FilterExpression:"#startTime BETWEEN :from AND :to",
         ExpressionAttributeNames: {
             "#startTime":"startTime"
         },
