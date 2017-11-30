@@ -144,8 +144,8 @@ function getEventsBetweenTime(from, to, callback) {
             "#startTime":"startTime"
         },
         ExpressionAttributeValues: {
-            ":from": from,
-            ":to":to
+            ":from": from.unix(),
+            ":to":to.unix()
         }
     };
 
