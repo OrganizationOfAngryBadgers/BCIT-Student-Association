@@ -26,7 +26,7 @@ const handlers = {
 
 	'GetEvents': function() {
 		var sns = new AWS.SNS();
-
+		var self = this;
 		sns.publish(
 			{
 	        	Message: 'UpdateDatabase',
@@ -39,7 +39,7 @@ const handlers = {
        			}
 		        console.log('push sent');
 		        console.log(data);
-		        this.emit(':tell', "Updating Database");
+		        self.emit(':tell', "Updating Database");
 		        context.done(null, 'Function Finished!');  
 		    });
 	
