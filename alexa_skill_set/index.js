@@ -6,6 +6,7 @@ var requester = require('request-promise');
 const FB_API_URL = "fb-events-alexa.herokuapp.com";
 var AWS = require('aws-sdk');
 AWS.config.region = 'us-west-2';
+var moment = require('moment');
 
 exports.handler = function (event, context, callback) {
 	var alexa = Alexa.handler(event, context);
@@ -77,6 +78,25 @@ const handlers = {
 		});
 	},*/
 
+
+	'GetEventsToday': function() {
+
+	},
+
+	'GetEventsThisWeek': function() {
+		var this_ptr = this;
+		var from = moment().startOf('day');
+		var to = from.add(7, 'days'); 
+		getEventsBetweenTime(from.format(), to.format(), function (err, data) {
+			if (err) {
+				this_ptr.emit(':tell', "Error Getting Events");
+			} else {
+				this_ptr.emit(':tell', "Success");
+			}
+		});
+	},
+
+
 	'GetEventDescription': function() {
 
 	},
@@ -104,6 +124,40 @@ const handlers = {
 		this.emit(':tell', say );
 	}
 
+}
+
+function getEventsBetweenTime(from, to, callback) {
+	var docClient = new AWS.DynamoDB.DocumentClient();
+    var params = {
+        TableName:"BCIT_SA_Events",
+        KeyConditionExpression:"#startTime BETWEEN :from AND :to",
+        ExpressionAttributeNames: {
+            "#startTime":"startTime"
+        },
+        ExpressionAttributeValues: {
+            ":from": from,
+            ":to":to
+        }
+    };
+
+    var items = []
+    var queryExecute = function(callback) {
+        docClient.query(params, function(err,result) {
+            if(err) {
+                callback(err);
+            } else {
+            console.log(result)
+            items = items.concat(result.Items);
+            if(result.LastEvaluatedKey) {
+                params.ExclusiveStartKey = result.LastEvaluatedKey;
+                queryExecute(callback);
+                } else {
+                    callback(err,items);
+                }
+            }
+        });
+    }
+    queryExecute(callback);
 }
 
 
