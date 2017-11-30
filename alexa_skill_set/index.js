@@ -82,7 +82,7 @@ const handlers = {
 	'GetEventsToday': function() {
 
 	},
-
+	
 	'GetEventsThisWeek': function() {
 		var this_ptr = this;
 		var from = moment().startOf('day');
@@ -95,11 +95,15 @@ const handlers = {
 				console.log(err);
 				this_ptr.emit(':tell', "Error Getting Events");
 			} else {
+				console.log(data);
 				this_ptr.emit(':tell', "Success");
 			}
 		});
 	},
 
+	'GetEventsNextWeek': function() {
+
+	},
 
 	'GetEventDescription': function() {
 
