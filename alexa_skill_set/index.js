@@ -81,8 +81,8 @@ const handlers = {
 
 	'GetEventsToday': function() {
 		var this_ptr = this;
-		var from = moment().startOf('day');
-		var to = moment().utc().endOf('day');
+		var from = moment().utcOffset("-08:00").startOf('day');
+		var to = moment().utcOffset("-08:00").endOf('day');
 		console.log("From: " + from.unix());
 		console.log("To: " + to.unix());
 
