@@ -120,7 +120,7 @@ const handlers = {
 		var from = moment().endOf('week');
 		var to = from.add(7, 'days'); 
 		console.log("From: " + from.unix());
-		console.log("To: " + to.unix();
+		console.log("To: " + to.unix());
 
 		getEventsBetweenTime(from, to, function (err, data) {
 			if (err) {
