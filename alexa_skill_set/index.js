@@ -96,11 +96,10 @@ const handlers = {
 			}
 		});
 	},
-	
 	'GetEventsThisWeek': function() {
 		var this_ptr = this;
 		var from = moment().startOf('day');
-		var to = from.add(7, 'days'); 
+		var to = (moment(from)).add(7, 'days'); 
 		console.log("From: " + from.unix());
 		console.log("To: " + to.unix());
 
@@ -118,7 +117,7 @@ const handlers = {
 	'GetEventsNextWeek': function() {
 		var this_ptr = this;
 		var from = moment().endOf('week');
-		var to = from.add(7, 'days'); 
+		var to = (moment(from)).add(7, 'days'); 
 		console.log("From: " + from.unix());
 		console.log("To: " + to.unix());
 
