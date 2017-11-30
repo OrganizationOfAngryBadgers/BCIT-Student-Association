@@ -87,6 +87,9 @@ const handlers = {
 		var this_ptr = this;
 		var from = moment().startOf('day');
 		var to = from.add(7, 'days'); 
+		console.log(from.format());
+		console.log(to.format());
+
 		getEventsBetweenTime(from.format(), to.format(), function (err, data) {
 			if (err) {
 				console.log(err);
