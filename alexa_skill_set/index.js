@@ -1,9 +1,11 @@
 // Lambda Node.JS
 'use strict';
+
 var Alexa = require("alexa-sdk");
-var storage = require("./storage");
 var requester = require('request-promise');
 const FB_API_URL = "fb-events-alexa.herokuapp.com";
+var AWS = require('aws-sdk');
+AWS.config.region = 'us-west-2';
 
 exports.handler = function (event, context, callback) {
 	var alexa = Alexa.handler(event, context);
@@ -22,19 +24,26 @@ const handlers = {
 
 	},
 
-	'SetMyFavoriteColor': function() {
-		var color = this.event.request.intent.slots.color.value;
-		var response = '';
-
-		storage.save(color, this.event.session, (color) => {
-			response = 'Ok ' + color + ' is your favorite color. I got it.';
-			this.emit(':ask', response);
-		});
-	},
-
 	'GetEvents': function() {
-		
+		var sns = new AWS.SNS();
 
+		sns.publish(
+			{
+	        	Message: 'UpdateDatabase',
+	        	TopicArn: 'arn:aws:sns:us-west-2:923010755332:updateDatabase'
+    		}, 
+    		function(err, data) {
+        		if (err) {
+            		console.log(err.stack);
+            		return;
+       			}
+		        console.log('push sent');
+		        console.log(data);
+		        context.done(null, 'Function Finished!');  
+		    });
+	
+		this.emit(':tell', "Updating Database");
+		/*
 		const getEventsAPI = function getEventsAPI () {
 			console.log("API START GET EVENTS");
 			return requester('https://fb-events-alexa.herokuapp.com/getEvents', function (error, response, eventsJSON) {
@@ -53,6 +62,7 @@ const handlers = {
 			}
 
 		);
+		*/
 
 	},
 	
