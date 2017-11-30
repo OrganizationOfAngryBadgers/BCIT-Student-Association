@@ -92,7 +92,8 @@ const handlers = {
 				this_ptr.emit(':tell', "Error Getting Events");
 			} else {
 				console.log(data);
-				this_ptr.emit(':tell', "Success");
+				var sortedData = sortEventArray(data);
+				this_ptr.emit(':tell', eventsToSpokenString(sortedData));
 			}
 		});
 	},
@@ -109,7 +110,8 @@ const handlers = {
 				this_ptr.emit(':tell', "Error Getting Events");
 			} else {
 				console.log(data);
-				this_ptr.emit(':tell', "Success");
+				var sortedData = sortEventArray(data);
+				this_ptr.emit(':tell', eventsToSpokenString(sortedData));
 			}
 		});
 	},
@@ -127,7 +129,8 @@ const handlers = {
 				this_ptr.emit(':tell', "Error Getting Events");
 			} else {
 				console.log(data);
-				this_ptr.emit(':tell', "Success");
+				var sortedData = sortEventArray(data);
+				this_ptr.emit(':tell', eventsToSpokenString(sortedData));
 			}
 		});
 	},
@@ -193,6 +196,29 @@ function getEventsBetweenTime(from, to, callback) {
         });
     }
     scanExecute(callback);
+}
+
+function sortEventArray(events) {
+	return sortedEvents = events.sort(function(a, b) {
+    	return parseFloat(a.startTime) - parseFloat(b.startTime);
+	});
+}
+
+function eventsToSpokenString(events) {
+	if (events.length <= 0) {
+		return "There are no events."
+	}
+	var output = "";
+	for (var i = 0; i < events.length; i++) {
+		output+= "Event "
+		 		+ (i+1) 
+		 		+ " is " 
+		 		+ events[i].name 
+		 		+ " at " 
+		 		+ (moment(events[i].startTime)).format("dddd MMMM Do, h:mm a")
+		 		+ ". "
+	}
+	return output;
 }
 
 
