@@ -215,7 +215,7 @@ function eventsToSpokenString(events) {
 		 		+ " is " 
 		 		+ events[i].name 
 		 		+ " at " 
-		 		+ (moment.unix(events[i].startTime).valueOf()).format("dddd MMMM Do, h:mm a")
+		 		+ (moment(events[i].startTime)).format("dddd MMMM Do, h:mm a")
 		 		+ ". "
 	}
 	return output;
