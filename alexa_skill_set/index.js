@@ -89,6 +89,7 @@ const handlers = {
 		var to = from.add(7, 'days'); 
 		getEventsBetweenTime(from.format(), to.format(), function (err, data) {
 			if (err) {
+				console.log(err);
 				this_ptr.emit(':tell', "Error Getting Events");
 			} else {
 				this_ptr.emit(':tell', "Success");
