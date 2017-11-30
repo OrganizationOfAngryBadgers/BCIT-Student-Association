@@ -199,7 +199,7 @@ function getEventsBetweenTime(from, to, callback) {
 }
 
 function sortEventArray(events) {
-	return sortedEvents = events.sort(function(a, b) {
+	return events.sort(function(a, b) {
     	return parseFloat(a.startTime) - parseFloat(b.startTime);
 	});
 }
