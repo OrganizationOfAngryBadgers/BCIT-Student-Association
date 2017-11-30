@@ -80,7 +80,21 @@ const handlers = {
 
 
 	'GetEventsToday': function() {
+		var this_ptr = this;
+		var from = moment().startOf('day');
+		var to = moment().endOf('day');
+		console.log(from.format());
+		console.log(to.format());
 
+		getEventsBetweenTime(from, to, function (err, data) {
+			if (err) {
+				console.log(err);
+				this_ptr.emit(':tell', "Error Getting Events");
+			} else {
+				console.log(data);
+				this_ptr.emit(':tell', "Success");
+			}
+		});
 	},
 	
 	'GetEventsThisWeek': function() {
@@ -90,7 +104,7 @@ const handlers = {
 		console.log(from.format());
 		console.log(to.format());
 
-		getEventsBetweenTime(from.format(), to.format(), function (err, data) {
+		getEventsBetweenTime(from, to, function (err, data) {
 			if (err) {
 				console.log(err);
 				this_ptr.emit(':tell', "Error Getting Events");
@@ -102,7 +116,21 @@ const handlers = {
 	},
 
 	'GetEventsNextWeek': function() {
+		var this_ptr = this;
+		var from = moment().endOf('week');
+		var to = from.add(7, 'days'); 
+		console.log(from.format());
+		console.log(to.format());
 
+		getEventsBetweenTime(from, to, function (err, data) {
+			if (err) {
+				console.log(err);
+				this_ptr.emit(':tell', "Error Getting Events");
+			} else {
+				console.log(data);
+				this_ptr.emit(':tell', "Success");
+			}
+		});
 	},
 
 	'GetEventDescription': function() {
