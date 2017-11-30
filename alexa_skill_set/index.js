@@ -119,8 +119,8 @@ const handlers = {
 		var this_ptr = this;
 		var from = moment().endOf('week');
 		var to = from.add(7, 'days'); 
-		console.log(from.format());
-		console.log(to.format());
+		console.log("From: " + from.unix());
+		console.log("To: " + to.unix();
 
 		getEventsBetweenTime(from, to, function (err, data) {
 			if (err) {
@@ -173,7 +173,7 @@ function getEventsBetweenTime(from, to, callback) {
         },
         ExpressionAttributeValues: {
             ":from": from.unix(),
-            ":to":to.unix()
+            ":to": to.unix()
         }
     };
 
