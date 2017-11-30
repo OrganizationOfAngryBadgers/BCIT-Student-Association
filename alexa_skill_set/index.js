@@ -135,7 +135,7 @@ function getEventsBetweenTime(from, to, callback) {
     var params = {
         TableName:"BCIT_SA_Events",
         ProjectionExpression: "eventID",
-        KeyConditionExpression:"#startTime BETWEEN :from AND :to",
+        FilterExpression:"#startTime BETWEEN :from AND :to",
         ExpressionAttributeNames: {
             "#startTime":"startTime"
         },
@@ -146,8 +146,8 @@ function getEventsBetweenTime(from, to, callback) {
     };
 
     var items = []
-    var queryExecute = function(callback) {
-        docClient.query(params, function(err,result) {
+    var scanExecute = function(callback) {
+        docClient.scan(params, function(err,result) {
             if(err) {
                 callback(err);
             } else {
@@ -155,14 +155,14 @@ function getEventsBetweenTime(from, to, callback) {
             items = items.concat(result.Items);
             if(result.LastEvaluatedKey) {
                 params.ExclusiveStartKey = result.LastEvaluatedKey;
-                queryExecute(callback);
+                scanExecute(callback);
                 } else {
                     callback(err,items);
                 }
             }
         });
     }
-    queryExecute(callback);
+    scanExecute(callback);
 }
 
 
