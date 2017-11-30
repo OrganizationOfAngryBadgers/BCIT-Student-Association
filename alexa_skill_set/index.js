@@ -39,10 +39,11 @@ const handlers = {
        			}
 		        console.log('push sent');
 		        console.log(data);
+		        this.emit(':tell', "Updating Database");
 		        context.done(null, 'Function Finished!');  
 		    });
 	
-		this.emit(':tell', "Updating Database");
+		
 		/*
 		const getEventsAPI = function getEventsAPI () {
 			console.log("API START GET EVENTS");
